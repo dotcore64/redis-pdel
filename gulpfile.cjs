@@ -24,4 +24,4 @@ task('esm', () =>
 );
 
 task('build', parallel('cjs', 'esm'));
-task('default', 'build');
+task('default', task('build'));

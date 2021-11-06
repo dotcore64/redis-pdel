@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 12.x
           - 14.x
           - 16.x
+        redis-version: [6]
 
     steps:
       - uses: actions/checkout@v2
@@ -30,10 +30,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Test
-        run: npm run cover
-
-      - name: Publish to coveralls.io
-        uses: coverallsapp/github-action@master
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.1.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          redis-version: ${{ matrix.redis-version }}
+
+      - name: Test
+        run: npm test
