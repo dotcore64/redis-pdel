@@ -1,15 +1,20 @@
-const Redis = require('ioredis');
-const { use, expect } = require('chai');
-const { lua, name, numberOfKeys } = require('../..');
+import { createRequire } from 'module';
+import Redis from 'ioredis';
+import { use, expect } from 'chai';
 
+// https://github.com/import-js/eslint-plugin-import/issues/1649
+// eslint-disable-next-line import/no-unresolved
+import { lua, name, numberOfKeys } from 'redis-pdel';
+
+const require = createRequire(import.meta.url);
 use(require('chai-as-promised'));
 
-describe('integration', () => {
-  const keyPrefix = 'pdel:test:';
-  const redis = new Redis({ keyPrefix });
-  redis.defineCommand(name, { lua, numberOfKeys });
+const keyPrefix = 'pdel:test:';
+const redis = new Redis({ keyPrefix });
+redis.defineCommand(name, { lua, numberOfKeys });
 
-  beforeEach(async () => {
+describe('integration', () => {
+  beforeEach(async () => { // eslint-disable-line mocha/no-hooks-for-single-case
     const keys = await redis
       .multi()
       .pdel('foo:*')
@@ -22,6 +27,7 @@ describe('integration', () => {
     expect(keys[3][1].length).to.equal(0);
   });
 
+  // eslint-disable-next-line mocha/no-hooks-for-single-case
   after(() => redis.disconnect());
 
   it('should delete foo keys but not bar keys', async () => {
