@@ -2,9 +2,10 @@ import Redis from 'ioredis';
 import { use, expect } from 'chai';
 
 // https://github.com/import-js/eslint-plugin-import/issues/1649
-// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-unresolved,n/no-missing-import
 import { lua, name, numberOfKeys } from 'redis-pdel';
 
+// eslint-disable-next-line unicorn/no-await-expression-member
 use((await import('chai-as-promised')).default);
 
 const keyPrefix = 'pdel:test:';
@@ -42,6 +43,6 @@ describe('integration', () => {
       'foo:2',
       'bar:1',
       'bar:2',
-    ])).to.become([null, null, 'val', 'val']);
+    ])).to.become([null, null, 'val', 'val']); // eslint-disable-line unicorn/no-null
   });
 });
