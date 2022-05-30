@@ -1,4 +1,3 @@
-import { createRequire } from 'module';
 import Redis from 'ioredis';
 import { use, expect } from 'chai';
 
@@ -6,8 +5,7 @@ import { use, expect } from 'chai';
 // eslint-disable-next-line import/no-unresolved
 import { lua, name, numberOfKeys } from 'redis-pdel';
 
-const require = createRequire(import.meta.url);
-use(require('chai-as-promised'));
+use((await import('chai-as-promised')).default);
 
 const keyPrefix = 'pdel:test:';
 const redis = new Redis({ keyPrefix });
