@@ -2,8 +2,6 @@
 
 [![Build Status][build-badge]][build]
 [![npm package][npm-badge]][npm]
-[![Dependency Status][dependency-status-badge]][dependency-status]
-[![devDependency Status][dev-dependency-status-badge]][dev-dependency-status]
 
 > pdel lua command for redis clients
 
@@ -32,8 +30,9 @@ $ npm install --save redis-pdel
 The easiest usecase is to use with [https://github.com/luin/ioredis](ioredis) as follows:
 
 ```js
-const Redis = require('ioredis');
-const { name, lua, numberOfKeys } = require('redis-pdel');
+import Redis from 'ioredis';
+import { name, lua, numberOfKeys } from 'redis-pdel';
+
 const redis = new Redis();
 redis.defineCommand(name, { lua, numberOfKeys });
 ```
@@ -64,9 +63,3 @@ See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
 
 [npm-badge]: https://img.shields.io/npm/v/redis-pdel.svg?style=flat-square
 [npm]: https://www.npmjs.org/package/redis-pdel
-
-[dependency-status-badge]: https://david-dm.org/dotcore64/redis-pdel.svg?style=flat-square
-[dependency-status]: https://david-dm.org/dotcore64/redis-pdel
-
-[dev-dependency-status-badge]: https://david-dm.org/dotcore64/redis-pdel/dev-status.svg?style=flat-square
-[dev-dependency-status]: https://david-dm.org/dotcore64/redis-pdel#info=devDependencies
