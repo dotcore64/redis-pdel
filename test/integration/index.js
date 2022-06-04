@@ -13,7 +13,7 @@ const redis = new Redis({ keyPrefix });
 redis.defineCommand(name, { lua, numberOfKeys });
 
 describe('integration', () => {
-  beforeEach(async () => { // eslint-disable-line mocha/no-hooks-for-single-case
+  beforeEach(async () => {
     const keys = await redis
       .multi()
       .pdel('foo:*')
@@ -26,7 +26,6 @@ describe('integration', () => {
     expect(keys[3][1].length).to.equal(0);
   });
 
-  // eslint-disable-next-line mocha/no-hooks-for-single-case
   after(() => redis.disconnect());
 
   it('should delete foo keys but not bar keys', async () => {
