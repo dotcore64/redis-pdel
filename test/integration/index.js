@@ -2,7 +2,7 @@ import Redis from 'ioredis';
 import { use, expect } from 'chai';
 
 // https://github.com/import-js/eslint-plugin-import/issues/1649
-// eslint-disable-next-line import/no-unresolved,n/no-missing-import
+// eslint-disable-next-line import/no-unresolved
 import { lua, name, numberOfKeys } from 'redis-pdel';
 
 // eslint-disable-next-line unicorn/no-await-expression-member
