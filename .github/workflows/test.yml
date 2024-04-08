@@ -20,6 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: leafo/gh-actions-lua@v10
+      - uses: leafo/gh-actions-luarocks@v4
+      - name: install luacheck
+        run: luarocks install luacheck
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -29,7 +34,8 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Lint
-        run: npm run lint
+        run:
+          npm run lint && luacheck src
 
       - name: Start Redis
         uses: supercharge/redis-github-action@1.8.0
