@@ -8,12 +8,16 @@ if type(redis.replicate_commands) == "function" and redis.replicate_commands() t
 	repeat
 		cursor, keys = unpack(redis.call("SCAN", cursor, "MATCH", KEYS[1]))
 		count = count + #keys
-		redis.call("DEL", unpack(keys))
+		if #keys > 0 then
+			redis.call("DEL", unpack(keys))
+		end
 	until cursor == "0"
 
 	return count
 else
 	local keys = redis.call("KEYS", KEYS[1])
-	redis.call("DEL", unpack(keys))
+	if #keys > 0 then
+		redis.call("DEL", unpack(keys))
+	end
 	return #keys
 end
