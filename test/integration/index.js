@@ -44,4 +44,6 @@ describe('integration', () => {
       'bar:2',
     ])).to.become([null, null, 'val', 'val']); // eslint-disable-line unicorn/no-null
   });
+
+  it('should delete zero keys', () => expect(redis.pdel('foo:*')).to.become(0));
 });
