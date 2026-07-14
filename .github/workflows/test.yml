@@ -34,8 +34,7 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Lint
-        run:
-          npm run lint && luacheck src
+        run: npm run lint && luacheck src
 
       - name: Start Redis
         uses: supercharge/redis-github-action@v2
