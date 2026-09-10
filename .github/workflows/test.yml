@@ -23,7 +23,7 @@ jobs:
       - uses: leafo/gh-actions-lua@v13
       - uses: leafo/gh-actions-luarocks@v6
       - name: install luacheck
-        run: luarocks install luacheck
+        run: luarocks install https://raw.githubusercontent.com/lunarmodules/luacheck/master/luacheck-dev-1.rockspec
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v7
