@@ -45,7 +45,7 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^18.5.0",
     "eslint-plugin-prettier": "^5.5.7",
-    "eslint-plugin-unicorn": "^65.0.1",
+    "eslint-plugin-unicorn": "^79.0.0",
     "eslint-plugin-yml": "^3.10.0",
     "gulp": "^5.0.1",
     "gulp-redis-lua2js": "^7.0.0",
